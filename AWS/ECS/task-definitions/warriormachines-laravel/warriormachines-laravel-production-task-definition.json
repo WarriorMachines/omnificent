@@ -5,7 +5,13 @@
       "host": {
         "sourcePath": "/home/ec2-user/warriormachines-web-settings/production/warriormachines-laravel/.env"
       },
-      "name": "WarriorMachinesVolume"
+      "name": "WarriorMachinesLaravelVolume"
+    },
+    {
+      "host": {
+        "sourcePath": "/home/ec2-user/warriormachines-web-settings/production/warriormachines-phpbb/config.php"
+      },
+      "name": "WarriorMachinesPhpBbVolume"
     }
   ],
   "containerDefinitions": [
@@ -21,26 +27,14 @@
       "memory": 100,
       "mountPoints": [
         {
-          "sourceVolume": "WarriorMachinesVolume",
+          "sourceVolume": "WarriorMachinesLaravelVolume",
           "containerPath": "/var/www/html/.env"
         }
       ],
-      "name": "WarriorMachinesLaravel"
-    },
-    {
-      "essential": true,
-      "image": "warriormachines/warriormachines-php-fpm:latest",
-      "logConfiguration": {
-        "logDriver": "json-file",
-        "options": {
-          "max-size": "50m"
-        }
-      },
-      "memory": 200,
-      "name": "WarriorMachinesPhpFpm",
+      "name": "WarriorMachinesLaravel",
       "volumesFrom": [
         {
-          "sourceContainer": "WarriorMachinesLaravel"
+          "sourceContainer": "WarriorMachinesPhpBb"
         }
       ]
     },
@@ -60,10 +54,45 @@
       "name": "WarriorMachinesNginx",
       "portMappings": [
         {
-          "hostPort": 50001,
+          "hostPort": 60001,
           "containerPort": 80
         }
       ],
+      "volumesFrom": [
+        {
+          "sourceContainer": "WarriorMachinesLaravel"
+        }
+      ]
+    },
+    {
+      "essential": true,
+      "image": "warriormachines/warriormachines-phpbb:latest",
+      "logConfiguration": {
+        "logDriver": "json-file",
+        "options": {
+          "max-size": "50m"
+        }
+      },
+      "memory": 100,
+      "mountPoints": [
+        {
+          "sourceVolume": "WarriorMachinesPhpBbVolume",
+          "containerPath": "/var/www/html/public/discuss/config.php"
+        }
+      ],
+      "name": "WarriorMachinesPhpBb"
+    },
+    {
+      "essential": true,
+      "image": "warriormachines/warriormachines-php-fpm:latest",
+      "logConfiguration": {
+        "logDriver": "json-file",
+        "options": {
+          "max-size": "50m"
+        }
+      },
+      "memory": 200,
+      "name": "WarriorMachinesPhpFpm",
       "volumesFrom": [
         {
           "sourceContainer": "WarriorMachinesLaravel"
