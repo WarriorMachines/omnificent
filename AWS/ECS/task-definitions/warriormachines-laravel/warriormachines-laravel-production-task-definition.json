@@ -81,7 +81,7 @@
       "mountPoints": [
         {
           "sourceVolume": "WarriorMachinesPhpBbVolume",
-          "containerPath": "/var/www/html/public/discuss/config.php"
+          "containerPath": "/var/www/html/public/forums/config.php"
         }
       ],
       "name": "WarriorMachinesPhpBb"
