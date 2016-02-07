@@ -54,11 +54,7 @@
       "name": "WarriorMachinesNginx",
       "portMappings": [
         {
-          "hostPort": 80,
-          "containerPort": 80
-        },
-        {
-          "hostPort": 60001,
+          "hostPort": 60000,
           "containerPort": 80
         }
       ],
