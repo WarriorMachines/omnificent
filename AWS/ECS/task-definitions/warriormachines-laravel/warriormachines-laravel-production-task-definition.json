@@ -21,7 +21,7 @@
       "logConfiguration": {
         "logDriver": "json-file",
         "options": {
-          "max-size": "50m"
+          "max-size": "20m"
         }
       },
       "memory": 100,
@@ -47,7 +47,7 @@
       "logConfiguration": {
         "logDriver": "json-file",
         "options": {
-          "max-size": "50m"
+          "max-size": "20m"
         }
       },
       "memory": 100,
@@ -70,7 +70,7 @@
       "logConfiguration": {
         "logDriver": "json-file",
         "options": {
-          "max-size": "50m"
+          "max-size": "20m"
         }
       },
       "memory": 100,
@@ -88,7 +88,7 @@
       "logConfiguration": {
         "logDriver": "json-file",
         "options": {
-          "max-size": "50m"
+          "max-size": "20m"
         }
       },
       "memory": 200,
